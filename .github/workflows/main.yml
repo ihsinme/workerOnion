@@ -21,7 +21,7 @@ jobs:
     needs: StartWorks
     strategy:
       matrix:
-        job: ${{ fromRaw(needs.StartWorks.outputs.matrix) }}
+        job: ${{ fromJSON(needs.StartWorks.outputs.matrix) }}
     steps:
       - uses: actions/checkout@v1
       - name: start $JOB
