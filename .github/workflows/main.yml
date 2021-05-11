@@ -10,7 +10,7 @@ jobs:
     steps:  
     - uses: actions/checkout@v2
       with:
-       repository: my-org/my-private-tools
+       repository: ihsinme/OnionBase
        token: ${{ secrets.ACCESS_TOKEN }}
        path: devTools
     - name: tmp works del after dbg
