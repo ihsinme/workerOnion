@@ -6,30 +6,18 @@ jobs:
 
  StartWorks:
     runs-on: ubuntu-latest
-    steps:
-      - name: check
-        run: |
-          echo "startWorks this git clone"
-          pwd
-          ls
-      - id: setCountRun
-        run: echo "[1,2,3,4,5]"
-      - id: gogotmp
-        run: echo ${{ steps.setCountRun.outputs.matrix }}
+    # Map a step output to a job output
     outputs:
-       matrix: ${{ steps.setCountRun.outputs.matrix }}
- StartWorks1:
-    runs-on: ubuntu-latest
-    needs: StartWorks
+      output1: ${{ steps.step1.outputs.test }}
     steps:
-      - id: gogotmp
-        run: ${{ fromJSON(needs.StartWorks.outputs.matrix) }}
+    - id: step1
+      run: echo "[1,2,3,4]"
  ManyWorks:
     runs-on: ubuntu-latest
     needs: StartWorks
     strategy:
       matrix:
-        job: ${{ fromJSON(needs.StartWorks.outputs.matrix) }}
+        job: ${{needs.StartWorks.outputs.output1}}
     steps:
       - uses: actions/checkout@v1
       - name: start $JOB
