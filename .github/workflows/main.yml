@@ -6,7 +6,6 @@ jobs:
 
  StartWorks:
     runs-on: ubuntu-latest
-    needs: manyWorks
     steps:
       - name: check
         run: |
@@ -16,7 +15,7 @@ jobs:
       - name: start time
         run: |
           date
- manyWorks:
+ ManyWorks:
     runs-on: ubuntu-latest
     needs: StartWorks
     strategy:
@@ -31,7 +30,7 @@ jobs:
           JOB: ${{ matrix.job }}
  EndWorks:
     runs-on: ubuntu-latest
-    needs: manyWorks
+    needs: ManyWorks
     steps:
       - name: check
         run: |
