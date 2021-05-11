@@ -13,7 +13,7 @@ jobs:
        repository: my-org/my-private-tools
        token: ${{ secrets.ACCESS_TOKEN }}
        path: devTools
-    - id: tmp works del after dbg
+    - name: tmp works del after dbg
       run: |
        ls ./
        echo "123"
