@@ -14,11 +14,6 @@ jobs:
        token: ${{ secrets.ACCESS_TOKEN }}
        ref: devTools
        path: devTools
-    - name: tmp works del after dbg
-      run: |
-       ls ./ -al
-       echo "123"
-       ls devTools/
     - id: list_dirs
       run: echo "::set-output name=matrix::$(ls devTools/workModuleRun/*.py|jq -cnR '[inputs | select(length>0)]')"
  ManyWorks:
@@ -28,12 +23,17 @@ jobs:
       matrix:
         job: ${{fromJson(needs.StartWorks.outputs.matrix)}}
     steps:
-      - uses: actions/checkout@v1
-      - name: start $JOB
-        run: |
-          echo $JOB
-        env:
-          JOB: ${{ matrix.job }}
+    - uses: actions/checkout@v2
+      with:
+       repository: ihsinme/OnionBase
+       token: ${{ secrets.ACCESS_TOKEN }}
+       ref: devTools
+       path: devTools
+    - name: start $JOB
+      run: |
+          sudo python3 $JOB
+      env:
+        JOB: ${{ matrix.job }}
  EndWorks:
     runs-on: ubuntu-latest
 #    if: always()
