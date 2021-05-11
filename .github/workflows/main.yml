@@ -15,9 +15,9 @@ jobs:
        path: devTools
     - name: tmp works del after dbg
       run: |
-       ls ./
+       ls ./ -al
        echo "123"
-       ls devTools/workModuleRun/
+       ls devTools/
     - id: list_dirs
       run: echo "::set-output name=matrix::$(ls devTools/workModuleRun/*.py|jq -cnR '[inputs | select(length>0)]')"
  ManyWorks:
