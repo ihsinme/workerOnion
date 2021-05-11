@@ -16,7 +16,7 @@ jobs:
     needs: StartWorks
     steps:
     - id: step1
-      run: ${{fromJson(needs.StartWorks.outputs.matrix)}}
+      run: echo ${{fromJson(needs.StartWorks.outputs.matrix)}}
     - id: step2 
       run: echo "::set-output name=matrix::$(ls|jq -cnR '[inputs | select(length>0)]')"
  ManyWorks:
