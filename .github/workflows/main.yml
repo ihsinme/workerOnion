@@ -21,7 +21,7 @@ jobs:
     needs: StartWorks
     strategy:
       matrix:
-        job: ${{needs.StartWorks.outputs.output1}}
+        job: [1,2,3,4,5]
     steps:
       - uses: actions/checkout@v1
       - name: start $JOB
