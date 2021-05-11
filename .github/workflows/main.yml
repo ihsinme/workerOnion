@@ -23,7 +23,9 @@ jobs:
         job: [0, 1, 2, 3, 4]
     steps:
       - uses: actions/checkout@v1
-      - run: |
+      - name: start $JOB
+        if: contains(github.event.label.name, 'bug')      
+        run: |
           echo $JOB
         env:
           NUM_JOBS: 5
