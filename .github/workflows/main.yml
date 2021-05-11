@@ -3,15 +3,19 @@ on:
   issues:
     types: labeled
 jobs:
-
  StartWorks:
     runs-on: ubuntu-latest
-    # Map a step output to a job output
     outputs:
       output1: ${{ steps.step1.outputs.test }}
     steps:
     - id: step1
       run: echo "[1,2,3,4]"
+ StartWorks1:
+    runs-on: ubuntu-latest
+    needs: StartWorks
+    steps:
+    - id: step1
+      run: echo ${{needs.StartWorks.outputs.output1}}
  ManyWorks:
     runs-on: ubuntu-latest
     needs: StartWorks
