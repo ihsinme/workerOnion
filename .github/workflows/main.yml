@@ -1,0 +1,43 @@
+name: onion work
+on:
+  issues:
+    types: labeled
+jobs:
+
+ StartWorks:
+    runs-on: self-hosted
+    needs: manyWorks
+    steps:
+      - name: check
+        run: |
+          echo "startWorks this git clone"
+          pwd
+          ls
+      - name: start time
+        run: |
+          date
+ manyWorks:
+    runs-on: ubuntu-latest
+    needs: StartWorks
+    strategy:
+      matrix:
+        job: [0, 1, 2, 3, 4]
+    steps:
+      - uses: actions/checkout@v1
+      - run: |
+          echo $JOB
+        env:
+          NUM_JOBS: 5
+          JOB: ${{ matrix.job }}
+ EndWorks:
+    runs-on: self-hosted
+    needs: manyWorks
+    steps:
+      - name: check
+        run: |
+          echo "endWorks this push"
+          pwd
+          ls
+      - name: start time
+        run: |
+          date
