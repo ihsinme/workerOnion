@@ -18,13 +18,13 @@ jobs:
  ManyWorks:
     runs-on: ubuntu-latest
     needs: StartWorks
+    if: contains(github.event.label.name, 'bug')
     strategy:
       matrix:
         job: [0, 1, 2, 3, 4]
     steps:
       - uses: actions/checkout@v1
       - name: start $JOB
-        if: contains(github.event.label.name, 'bug')      
         run: |
           echo $JOB
         env:
