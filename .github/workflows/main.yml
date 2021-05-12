@@ -1,7 +1,5 @@
 name: onion work
 on:
-  issues:
-    types: labeled
   schedule:
     - cron:  '0 */8 * * *'
 jobs:
