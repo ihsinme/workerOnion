@@ -1,4 +1,4 @@
-name: team ubuntu 
+name: work place
 on:
   issues:
     types: labeled
