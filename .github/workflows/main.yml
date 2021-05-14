@@ -31,7 +31,6 @@ jobs:
        path: devTools
     - name: start $JOB
       run: |
-          sudo apt-get install -y python3-setuptools python3-pandas
           sudo python3 $JOB
       env:
         JOB: ${{ matrix.job }}
