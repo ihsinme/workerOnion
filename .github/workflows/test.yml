@@ -65,7 +65,7 @@ jobs:
        path: devTools
     - name: start $JOB
       run: |
-          python $JOB
+          python ${JOB}
           python devTools/workModuleTest/onlyWin/run.py
       env:
         JOB: ${{ matrix.job }}
