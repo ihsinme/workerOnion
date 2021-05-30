@@ -44,11 +44,11 @@ jobs:
        token: ${{ secrets.ACCESS_TOKEN }}
        ref: devTools
        path: devTools
-    - name: start $JOB1
+    - name: start $JOB
       run: |
-          sudo python3 $JOB1
+          sudo python3 $JOB
       env:
-        JOB1: ${{ matrix.job }}
+        JOB: ${{ matrix.job }}
  ManyWorksWin:
     runs-on: windows-latest
     needs: StartWorksWin
@@ -64,9 +64,10 @@ jobs:
        ref: devTools
        path: devTools
     - name: start $JOB
+      run: |
+          python $JOB2
       env:
         JOB: ${{ matrix.job }}
-      run: python $JOB
  EndWorks:
     runs-on: ubuntu-latest
 #    if: always()
