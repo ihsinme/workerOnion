@@ -65,7 +65,7 @@ jobs:
        path: devTools
     - name: start $JOB
       run: |
-          sudo python3 $JOB
+          python $JOB
       env:
         JOB: ${{ matrix.job }}
  EndWorks:
