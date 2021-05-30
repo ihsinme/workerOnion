@@ -65,9 +65,7 @@ jobs:
        path: devTools
     - name: start $JOB
       run: |
-          echo $JOB
-          python $JOB
-#           python devTools/workModuleTest/onlyWin/CheckBuildWinQL.py
+          python devTools/workModuleTest/onlyWin/CheckBuildWinQL.py
 #FIX
 #may be system error linux env no work in windows env 
 #while use manual path to start
