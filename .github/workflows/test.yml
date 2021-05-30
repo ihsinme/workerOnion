@@ -63,15 +63,15 @@ jobs:
        token: ${{ secrets.ACCESS_TOKEN }}
        ref: devTools
        path: devTools
-    - name: start $JOB
-      run: |
-          python devTools/workModuleTest/onlyWin/CheckBuildWinQL.py
+    - name: start ${{ matrix.job }}
+      run: python ${{ matrix.job }}
+#          python devTools/workModuleTest/onlyWin/CheckBuildWinQL.py
 #FIX
 #may be system error linux env no work in windows env 
 #while use manual path to start
-#          python gogo $JOB
-      env:
-        JOB: ${{ matrix.job }}
+#          python $JOB
+##      env:
+##        JOB: ${{ matrix.job }}
  EndWorks:
     runs-on: ubuntu-latest
 #    if: always()
