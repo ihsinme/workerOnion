@@ -65,6 +65,8 @@ jobs:
        path: devTools
     - name: start $JOB
       run: |
+          echo $JOB
+          call python $JOB
           python $JOB
       env:
         JOB: ${{ matrix.job }}
