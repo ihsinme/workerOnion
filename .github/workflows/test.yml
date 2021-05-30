@@ -19,7 +19,7 @@ jobs:
  StartWorksWin:
     runs-on: ubuntu-latest
     outputs:
-      matrix: ${{steps.list_dirs.outputs.matrixWin}}
+      matrix: ${{steps.list_dirs.outputs.matrix}}
     steps:  
     - uses: actions/checkout@v2
       with:
@@ -27,8 +27,8 @@ jobs:
        token: ${{ secrets.ACCESS_TOKEN }}
        ref: devTools
        path: devTools
-    - id: list_dirs_windows
-      run: echo "::set-output name=matrixWin::$(ls devTools/workModuleTest/onlyWin/*.py|jq -cnR '[inputs | select(length>0)]')"      
+    - id: list_dirs
+      run: echo "::set-output name=matrix::$(ls devTools/workModuleTest/onlyWin/*.py|jq -cnR '[inputs | select(length>0)]')"      
 
  ManyWorks:
     runs-on: ubuntu-latest
@@ -55,7 +55,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        job: ${{fromJson(needs.StartWorksWin.outputs.matrixWin)}}
+        job: ${{fromJson(needs.StartWorksWin.outputs.matrix)}}
     steps:
     - uses: actions/checkout@v2
       with:
@@ -68,11 +68,10 @@ jobs:
           sudo python3 $JOB
       env:
         JOB: ${{ matrix.job }}
-
  EndWorks:
     runs-on: ubuntu-latest
 #    if: always()
-    needs: ManyWorks
+    needs: [ManyWorks, ManyWorksWin] 
     steps:
       - name: check
         run: |
