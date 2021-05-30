@@ -65,9 +65,7 @@ jobs:
        path: devTools
     - name: start $JOB
       run: |
-          dir ./
-          python $JOB
-          dir tut
+          python gogo $JOB
       env:
         JOB: ${{ matrix.job }}
  EndWorks:
