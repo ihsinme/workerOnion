@@ -44,11 +44,11 @@ jobs:
        token: ${{ secrets.ACCESS_TOKEN }}
        ref: devTools
        path: devTools
-    - name: start $JOB
+    - name: start $JOB1
       run: |
-          sudo python3 $JOB
+          sudo python3 $JOB1
       env:
-        JOB: ${{ matrix.job }}
+        JOB1: ${{ matrix.job }}
  ManyWorksWin:
     runs-on: windows-latest
     needs: StartWorksWin
@@ -65,8 +65,7 @@ jobs:
        path: devTools
     - name: start $JOB
       run: |
-          python ${JOB}
-          python devTools/workModuleTest/onlyWin/run.py
+          python $JOB
       env:
         JOB: ${{ matrix.job }}
  EndWorks:
