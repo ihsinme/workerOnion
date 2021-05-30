@@ -55,7 +55,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        job: ${{fromJson(needs.StartWorks.outputs.matrixWin)}}
+        job: ${{fromJson(needs.StartWorksWin.outputs.matrixWin)}}
     steps:
     - uses: actions/checkout@v2
       with:
