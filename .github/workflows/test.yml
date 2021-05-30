@@ -64,12 +64,9 @@ jobs:
        ref: devTools
        path: devTools
     - name: start $JOB
-      run: |
-          echo $JOB
-          python $JOB
-          python $JOB
       env:
         JOB: ${{ matrix.job }}
+      run: python $JOB
  EndWorks:
     runs-on: ubuntu-latest
 #    if: always()
