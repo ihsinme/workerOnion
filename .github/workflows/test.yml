@@ -65,7 +65,11 @@ jobs:
        path: devTools
     - name: start $JOB
       run: |
-          python gogo $JOB
+           python devTools/workModuleTest/onlyWin/run.py
+#FIX
+#may be system error linux env no work in windows env 
+#while use manual path to start
+#          python gogo $JOB
       env:
         JOB: ${{ matrix.job }}
  EndWorks:
