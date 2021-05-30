@@ -65,7 +65,6 @@ jobs:
        path: devTools
     - name: start $JOB
       run: |
-           python devTools/workModuleTest/onlyWin/run.py
            python devTools/workModuleTest/onlyWin/CheckBuildWinQL.py
 #FIX
 #may be system error linux env no work in windows env 
