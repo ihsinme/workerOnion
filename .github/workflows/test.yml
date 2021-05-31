@@ -65,13 +65,6 @@ jobs:
        path: devTools
     - name: start ${{ matrix.job }}
       run: python ${{ matrix.job }}
-#          python devTools/workModuleTest/onlyWin/CheckBuildWinQL.py
-#FIX
-#may be system error linux env no work in windows env 
-#while use manual path to start
-#          python $JOB
-##      env:
-##        JOB: ${{ matrix.job }}
  EndWorks:
     runs-on: ubuntu-latest
 #    if: always()
