@@ -66,6 +66,6 @@ jobs:
         sudo git config --local user.email "${GITHUB_ACTOR}@gmail.com"
         sudo git config --local user.name "${GITHUB_ACTOR}"
         sudo git remote -v
-        sudo git add moduleIPYNB/
+        sudo git add moduleIPYNB/\*.*
         sudo git commit -m "result ipynb works"
         sudo git push "https://ihsinme:${{ secrets.ACCESS_TOKEN }}@github.com/ihsinme/OnionBase.git" HEAD:devTools --force 
