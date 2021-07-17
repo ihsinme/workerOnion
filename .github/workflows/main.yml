@@ -45,7 +45,7 @@ jobs:
        path: devTools
     - name: start $JOB
       run: |
-          sudo python3 $JOB
+          sudo python3 $JOB > /dev/null
       env:
         JOB: ${{ matrix.job }}
  ManyWorksWin:
@@ -63,7 +63,7 @@ jobs:
        ref: devTools
        path: devTools
     - name: start ${{ matrix.job }}
-      run: python ${{ matrix.job }}
+      run: python ${{ matrix.job }} > nul
  EndWorks:
     runs-on: ubuntu-latest
 #    if: always()
