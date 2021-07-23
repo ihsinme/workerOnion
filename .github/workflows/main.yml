@@ -63,7 +63,7 @@ jobs:
        ref: devTools
        path: devTools
     - name: start ${{ matrix.job }}
-      run: python ${{ matrix.job }} > nul
+      run: python ${{ matrix.job }} > a.txt 2>&1
  EndWorks:
     runs-on: ubuntu-latest
 #    if: always()
