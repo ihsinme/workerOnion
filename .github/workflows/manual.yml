@@ -56,7 +56,7 @@ jobs:
       if: contains(github.event.label.name, 'mLGTM')      
       run: |
         (cd /opt/&&sudo mkdir codeqlmy&&cd codeqlmy&&sudo git clone https://github.com/github/codeql.git codeql-repo) 
-        (cd /opt/codeqlmy&&sudo wget https://github.com/github/codeql-cli-binaries/releases/download/v2.5.5/codeql-linux64.zip&&sudo unzip codeql-linux64.zip&&sudo rm codeql-linux64.zip)
+        (cd /opt/codeqlmy&&sudo wget https://github.com/github/codeql-cli-binaries/releases/download/v2.5.9/codeql-linux64.zip&&sudo unzip codeql-linux64.zip&&sudo rm codeql-linux64.zip)
         sudo cp devTools/moduleIPYNB/in/RM_mLGTM.sh /opt/RM.sh
     - name: "works"
       run:  sudo python3 devTools/moduleIPYNB/in/telebot/sl.py ${{github.event.label.name}}
