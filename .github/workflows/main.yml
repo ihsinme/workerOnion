@@ -43,6 +43,13 @@ jobs:
        token: ${{ secrets.ACCESS_TOKEN }}
        ref: devTools
        path: devTools
+    - name: free disk space
+      run: |
+        sudo swapoff -a
+        sudo rm -f /swapfile
+        sudo apt clean
+        docker rmi $(docker image ls -aq)
+        df -h
     - name: start $JOB
       run: |
           sudo python3 $JOB > /dev/null
