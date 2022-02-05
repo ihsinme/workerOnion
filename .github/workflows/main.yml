@@ -52,7 +52,7 @@ jobs:
         df -h
     - name: start $JOB
       run: |
-          sudo python3 $JOB > /dev/null
+          sudo python3 $JOB
       env:
         JOB: ${{ matrix.job }}
  ManyWorksWin:
