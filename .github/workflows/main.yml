@@ -43,8 +43,18 @@ jobs:
        token: ${{ secrets.ACCESS_TOKEN }}
        ref: devTools
        path: devTools
-    - name: Free disk space
+    - name: Free dist space1
       run: |
+        sudo df -h 
+        sudo du -sh /*
+        docker volume rm $(docker volume ls -q)
+        sudo rm -rf /tmp/*
+        sudo df -h 
+        sudo du -sh /*        
+    - name: Free disk space2
+      run: |
+        sudo df -h 
+        sudo du -sh /*
         sudo apt-get remove aria2 ansible azure-cli shellcheck rpm xorriso zsync \
           clang-6.0 lldb-6.0 lld-6.0 clang-format-6.0 clang-8 lldb-8 lld-8 clang-format-8 \
           clang-9 lldb-9 lld-9 clangd-9 clang-format-9 dotnet-sdk-3.0 dotnet-sdk-3.1=3.1.101-1 \
@@ -85,13 +95,18 @@ jobs:
         sudo apt-get autoclean -y >/dev/null 2>&1
         sudo rm -rf /usr/local/lib/android >/dev/null 2>&1
         docker rmi $(docker image ls -aq) >/dev/null 2>&1
-    - name: free disk space
+        sudo df -h 
+        sudo du -sh /*        
+    - name: Free disk space3
       run: |
+        sudo df -h 
+        sudo du -sh /*      
         sudo swapoff -a
         sudo rm -f /swapfile
         sudo apt-get clean
         docker rmi $(docker image ls -aq)
-        df -h
+        sudo df -h 
+        sudo du -sh /*
     - name: start $JOB
       run: |
           sudo python3 $JOB
