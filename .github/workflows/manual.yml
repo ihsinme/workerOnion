@@ -44,8 +44,8 @@ jobs:
     - name: "tmpNixKlee"
       if: contains(github.event.label.name, 'tmpNixKlee')      
       run: |
-        sudo sh <(curl -L https://nixos.org/nix/install) --daemon
-        sudo nix-shell -p klee
+        curl -L https://nixos.org/nix/install | sh
+        nix-shell -p klee
     - name: "jupyter"
       if: contains(github.event.label.name, 'jupyter')      
       run: |
