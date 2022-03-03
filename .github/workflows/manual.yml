@@ -47,6 +47,8 @@ jobs:
         curl -L https://nixos.org/nix/install | sh
         . /home/runner/.nix-profile/etc/profile.d/nix.sh
         nix-shell -p klee
+        (cd devTools/moduleIPYNB/&&clang -emit-llvm -c get_sign.c)
+        (cd devTools/moduleIPYNB/&&klee get_sign.bc)
     - name: "jupyter"
       if: contains(github.event.label.name, 'jupyter')      
       run: |
