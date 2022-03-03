@@ -45,6 +45,7 @@ jobs:
       if: contains(github.event.label.name, 'tmpNixKlee')      
       run: |
         curl -L https://nixos.org/nix/install | sh
+        . /home/runner/.nix-profile/etc/profile.d/nix.sh
         nix-shell -p klee
     - name: "jupyter"
       if: contains(github.event.label.name, 'jupyter')      
