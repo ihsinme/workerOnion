@@ -53,9 +53,9 @@ jobs:
     - name: "tmpDockerKlee"
       if: contains(github.event.label.name, 'tmpDockerKlee')      
       run: |
-        docker run -t -v /tmp/works/:/code klee/klee clang -I /home/klee/klee_src/include/klee/include -emit-llvm -c -g /code/get_sign.c -o /code/get_sign.bc
+        docker run -t -v /tmp/works/:/tmp klee/klee clang -I /home/klee/klee_src/include/klee/include -emit-llvm -c -g /tmp/get_sign.c -o /tmp/get_sign.bc
         ls -al /tmp/works
-        docker run -t -v /tmp/works/:/code klee/klee klee get_sign.bc
+        docker run -t -v /tmp/works/:/tmp klee/klee klee get_sign.bc
     - name: "jupyter"
       if: contains(github.event.label.name, 'jupyter')      
       run: |
