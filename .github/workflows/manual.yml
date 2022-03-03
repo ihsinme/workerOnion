@@ -47,7 +47,7 @@ jobs:
         curl -L https://nixos.org/nix/install | sh
         . /home/runner/.nix-profile/etc/profile.d/nix.sh
         nix-shell -p klee
-        (cd devTools/moduleIPYNB/&&$ clang -I nix/store/90p7hjhllf0s029jgfs2xwlpniigj7ji-klee-2.2/include -emit-llvm -c -g -O0 -Xclang -disable-O0-optnone get_sign.c)
+        (cd devTools/moduleIPYNB/&& clang -I nix/store/90p7hjhllf0s029jgfs2xwlpniigj7ji-klee-2.2/include -emit-llvm -c -g -O0 -Xclang -disable-O0-optnone get_sign.c)
         (cd devTools/moduleIPYNB/&&klee get_sign.bc)
     - name: "jupyter"
       if: contains(github.event.label.name, 'jupyter')      
