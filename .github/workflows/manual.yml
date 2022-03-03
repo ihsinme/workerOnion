@@ -30,6 +30,7 @@ jobs:
         sudo mkdir /tmp/in
         sudo mkdir /tmp/out
         sudo mkdir /tmp/works
+        sudo cp devTools/moduleIPYNB/get_sign.c /tmp/works
         sudo cp devTools/moduleIPYNB/in/RM.sh /opt/
         sudo cp devTools/moduleIPYNB/tele.py /opt/
         sudo cp devTools/moduleIPYNB/sshloc.sh /opt/
@@ -53,8 +54,8 @@ jobs:
       if: contains(github.event.label.name, 'tmpDockerKlee')      
       run: |
         docker pull klee/klee:2.1
-        docker run -t -v ./devTools/moduleIPYNB/:/code klee/klee clang -I /home/klee/klee_src/include/klee/include -emit-llvm -c -g /code/get_sign.c -o /code/FILE.bc
-        docker run -t -v ./devTools/moduleIPYNB/:/code klee/klee klee FILE.bc
+        docker run -t -v /tmp/works/:/code klee/klee clang -I /home/klee/klee_src/include/klee/include -emit-llvm -c -g /code/get_sign.c -o /code/FILE.bc
+        docker run -t -v /tmp/works/:/code klee/klee klee FILE.bc
     - name: "jupyter"
       if: contains(github.event.label.name, 'jupyter')      
       run: |
