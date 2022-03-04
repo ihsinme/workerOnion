@@ -53,9 +53,10 @@ jobs:
     - name: "tmpDockerKlee"
       if: contains(github.event.label.name, 'tmpDockerKlee')      
       run: |
-        docker run -t -v /tmp/works/:/tmp --ulimit='stack=-1:-1' klee/klee:2.1 /home/klee/clang -I /home/klee/klee_src/include/klee/include -emit-llvm -c -g /tmp/get_sign.c -o /tmp/get_sign.bc
+        docker run -t -v /tmp/works/:/tmp --ulimit='stack=-1:-1' klee/klee:2.1 ls -al /tmp
+        docker run -t -v /tmp/works/:/tmp --ulimit='stack=-1:-1' klee/klee:2.1 /usr/bin/clang-6.0 -I /home/klee/klee_src/include/klee/include -emit-llvm -c -g /tmp/get_sign.c -o /tmp/get_sign.bc
         ls -al /tmp/works
-        docker run -t -v /tmp/works/:/tmp --ulimit='stack=-1:-1' klee/klee:2.1 klee get_sign.bc
+        docker run -t -v /tmp/works/:/tmp --ulimit='stack=-1:-1' klee/klee:2.1 /home/klee/klee_build/bin/klee --posix-runtime -libc=uclibc get_sign.bc
     - name: "jupyter"
       if: contains(github.event.label.name, 'jupyter')      
       run: |
