@@ -55,9 +55,9 @@ jobs:
         sudo mkdir /tmp/wklee
         sudo chmod 777 /tmp/wklee
         sudo cp devTools/moduleIPYNB/get_sign.c /tmp/wklee
-        sudo docker run -t -v /tmp/wklee/:/tmp --ulimit='stack=-1:-1' klee/klee:2.1 /usr/bin/clang-6.0 -I /home/klee/klee_src/include -emit-llvm -c -g /tmp/get_sign.c -o /tmp/get_sign.bc
+        sudo docker run -t -v /tmp/wklee/:/tmp/code --ulimit='stack=-1:-1' klee/klee:2.1 /usr/bin/clang-6.0 -I /home/klee/klee_src/include -emit-llvm -c -g /tmp/code/get_sign.c -o /tmp/code/get_sign.bc
         ls -al /tmp/wklee
-        sudo docker run -t -v /tmp/wklee/:/tmp --ulimit='stack=-1:-1' klee/klee:2.1 /home/klee/klee_build/bin/klee --posix-runtime -libc=uclibc /tmp/get_sign.bc
+        sudo docker run -t -v /tmp/wklee/:/tmp/code --ulimit='stack=-1:-1' klee/klee:2.1 /home/klee/klee_build/bin/klee --posix-runtime -libc=uclibc /tmp/code/get_sign.bc
     - name: "jupyter"
       if: contains(github.event.label.name, 'jupyter')      
       run: |
