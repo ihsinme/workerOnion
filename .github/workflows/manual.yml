@@ -29,8 +29,7 @@ jobs:
         sudo mkdir /opt/docs/
         sudo mkdir /tmp/in
         sudo mkdir /tmp/out
-        mkdir /tmp/works
-        cp devTools/moduleIPYNB/get_sign.c /tmp/works
+        sudo mkdir /tmp/works
         sudo cp devTools/moduleIPYNB/in/RM.sh /opt/
         sudo cp devTools/moduleIPYNB/tele.py /opt/
         sudo cp devTools/moduleIPYNB/sshloc.sh /opt/
@@ -53,10 +52,12 @@ jobs:
     - name: "tmpDockerKlee"
       if: contains(github.event.label.name, 'tmpDockerKlee')      
       run: |
-        docker run -t -v /tmp/works/:/tmp --ulimit='stack=-1:-1' klee/klee:2.1 ls -al /tmp
-        docker run -t -v /tmp/works/:/tmp --ulimit='stack=-1:-1' klee/klee:2.1 /usr/bin/clang-6.0 -I /home/klee/klee_src/include/klee/include -emit-llvm -c -g /tmp/get_sign.c -o /tmp/get_sign.bc
-        ls -al /tmp/works
-        docker run -t -v /tmp/works/:/tmp --ulimit='stack=-1:-1' klee/klee:2.1 /home/klee/klee_build/bin/klee --posix-runtime -libc=uclibc get_sign.bc
+        sudo mkdir /tmp/wklee
+        sudo chmod 777 /tmp/wklee
+        sudo cp devTools/moduleIPYNB/get_sign.c /tmp/wklee
+        sudo docker run -t -v /tmp/wklee/:/tmp --ulimit='stack=-1:-1' klee/klee:2.1 /usr/bin/clang-6.0 -I /home/klee/klee_src/include/klee/include -emit-llvm -c -g /tmp/get_sign.c -o /tmp/get_sign.bc
+        ls -al /tmp/wklee
+        sudo docker run -t -v /tmp/wklee/:/tmp --ulimit='stack=-1:-1' klee/klee:2.1 /home/klee/klee_build/bin/klee --posix-runtime -libc=uclibc /tmp/get_sign.bc
     - name: "jupyter"
       if: contains(github.event.label.name, 'jupyter')      
       run: |
