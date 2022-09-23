@@ -2,6 +2,9 @@ name: test onion work
 on:
   issue_comment:
     types: [created]
+#tmp for fin tests
+  schedule:
+    - cron:  '1 4 * * 6'
 jobs:
  StartWorks:
     runs-on: ubuntu-latest
