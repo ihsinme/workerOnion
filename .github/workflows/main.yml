@@ -8,7 +8,7 @@ jobs:
     outputs:
       matrix: ${{steps.list_dirs.outputs.matrix}}
     steps:  
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
       with:
        repository: ihsinme/OnionBase
        token: ${{ secrets.ACCESS_TOKEN }}
@@ -21,7 +21,7 @@ jobs:
     outputs:
       matrix: ${{steps.list_dirs.outputs.matrix}}
     steps:  
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
       with:
        repository: ihsinme/OnionBase
        token: ${{ secrets.ACCESS_TOKEN }}
@@ -37,7 +37,7 @@ jobs:
       matrix:
         job: ${{fromJson(needs.StartWorks.outputs.matrix)}}
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
       with:
        repository: ihsinme/OnionBase
        token: ${{ secrets.ACCESS_TOKEN }}
@@ -67,7 +67,7 @@ jobs:
       matrix:
         job: ${{fromJson(needs.StartWorksWin.outputs.matrix)}}
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
       with:
        repository: ihsinme/OnionBase
        token: ${{ secrets.ACCESS_TOKEN }}
